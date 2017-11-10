@@ -38,7 +38,6 @@ def return_all_recipes():
 def calculate_water_score():
     print(request.data)
 
-
 # def reedem_points_for_local_purchases():
 
 if __name__ == '__main__':
