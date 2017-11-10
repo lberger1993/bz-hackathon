@@ -20,7 +20,7 @@
         </header>
         <div ng-show="ingredients.length">
             <ul>
-                <li ng-repeat="ingredient in ingredients">
+                <li ng-repeat="ingredient in ingredients track by $index">
                     <span>{{ingredient}}</span>
                     <span>{{ingredient}}</span>
                 </li>
@@ -30,6 +30,7 @@
             <input id="new-ingredient" placeholder="What's your next ingredient?"
                ng-model="newIngredient" autofocus>
         </form>
+        <span>{{foodList}}</span>
     </div>
 </section>
 </body>
