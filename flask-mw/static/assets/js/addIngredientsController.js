@@ -3,20 +3,24 @@ angular.module('HelloWorldApp', [])
         $scope.ingredients = [];
         $scope.newIngredient = "";
         $scope.foodList = "";
+        $scope.query = "";
+
+        $http({
+            method: 'GET',
+            url: '/api/v1/get_all_food'
+        }).then(function successCallback(response) {
+            $scope.savedIngredients = response.data;
+        }, function errorCallback(response) {
+            //TODO add error processing
+        });
+
+
+
         //TODO remove this from HelloWorld to smth better
 
         //TODO move this somewhere:
-        $scope.addIngredient = function() {
-            $scope.ingredients.push($scope.newIngredient);
-
-            $http({
-                method: 'GET',
-                url: '/api/v1/get_all_food'
-            }).then(function successCallback(response) {
-                $scope.foodList = response.data;
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            });
+        $scope.addIngredient = function(newIngredient) {
+            $scope.ingredients.push(newIngredient);
+            $scope.query = "";
         }
     }]);

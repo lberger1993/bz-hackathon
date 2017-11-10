@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Add ingredients</title>
     <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
     <!--&lt;!&ndash;[if lte IE 8]><script src="/static/assets/js/ie/html5shiv.js"></script><![endif]&ndash;&gt;-->
     <!--<link rel="stylesheet" href="/static/assets/css/main.css" />-->
@@ -12,6 +14,7 @@
 </head>
 <body ng-app="HelloWorldApp">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 <script src="../assets/js/addIngredientsController.js"></script>
 <section id="one">
     <div class="inner" ng-controller="HelloWorldController">
@@ -21,16 +24,32 @@
         <div ng-show="ingredients.length">
             <ul>
                 <li ng-repeat="ingredient in ingredients track by $index">
-                    <span>{{ingredient}}</span>
-                    <span>{{ingredient}}</span>
+                    <span>{{ingredient.ProductName}}</span>
+                    <input placeholder="amount">
+                    <span>{{ingredient.WaterCost}}</span>
                 </li>
             </ul>
         </div>
-        <form id="todo-form" ng-submit="addIngredient()">
-            <input id="new-ingredient" placeholder="What's your next ingredient?"
-               ng-model="newIngredient" autofocus>
-        </form>
+
         <span>{{foodList}}</span>
+
+
+        <!-- TODO cleanup unnecessary css classses -->
+        <div class="dropdown dropdown-scroll">
+
+            <ul>
+                <div class="input-group input-group-sm search-control">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                    <input type="text" class="form-control"
+                           placeholder="What's your next ingredient?" ng-model="query">
+                </div>
+                <div ng-show="query != ''" role="presentation" ng-repeat='item in savedIngredients | filter:query'>
+                    <a ng-click="addIngredient(item)" href="#"> {{item.ProductName}} </a>
+                </div>
+            </ul>
+        </div>
     </div>
 </section>
 </body>
