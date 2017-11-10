@@ -13,6 +13,13 @@ def get_product_list():
         product_list.append(json_item)
     return product_list
 
+def get_all_recipies():
+    result=[]
+    all_rec_ids=cur.execute("SELECT ID FROM RECIPIES").fetchall()
+    for id in all_rec_ids:
+        print(id[0])
+        result.append(get_recipe(id[0]))
+    return result
 
 def get_recipe(recipeID):
     db_rec = cur.execute("SELECT * FROM RECIPIES WHERE ID = ?", (str(recipeID),)).fetchone()
@@ -47,8 +54,7 @@ def get_recipe(recipeID):
 
 
 if __name__ == '__main__':
-
-    print(get_recipe(1))
+    print(get_all_recipies()[1])
 
 
 
