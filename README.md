@@ -1,0 +1,2 @@
+# bz-hackathon
+Bolzano Hackathon
