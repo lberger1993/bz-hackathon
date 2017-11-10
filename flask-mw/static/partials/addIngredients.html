@@ -10,12 +10,22 @@
     <!--&lt;!&ndash;[if lte IE 9]><link rel="stylesheet" href="/static/assets/css/ie9.css" /><![endif]&ndash;&gt;-->
     <!--&lt;!&ndash;[if lte IE 8]><link rel="stylesheet" href="/static/assets/css/ie8.css" /><![endif]&ndash;&gt;-->
 </head>
-<body>
+<body ng-app="HelloWorldApp">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="../assets/js/addIngredientsController.js"></script>
 <section id="one">
-    <div class="inner">
+    <div class="inner" ng-controller="HelloWorldController">
         <header class="major">
             <h2> Enter your ingredients</h2>
         </header>
+        <div ng-show="ingredients.length">
+            <ul>
+                <li ng-repeat="ingredient in ingredients">
+                    <span>{{ingredient}}</span>
+                    <span>{{ingredient}}</span>
+                </li>
+            </ul>
+        </div>
         <form id="todo-form" ng-submit="addIngredient()">
             <input id="new-ingredient" placeholder="What's your next ingredient?"
                ng-model="newIngredient" autofocus>
