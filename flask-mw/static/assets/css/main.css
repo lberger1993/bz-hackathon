@@ -3986,3 +3986,16 @@
 			opacity: 1;
 			visibility: visible;
 		}
+		::-webkit-input-placeholder { /* WebKit browsers */
+    color:    white !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color:    white !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color:    white !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+     color:    white !important;
+}
+}
