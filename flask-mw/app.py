@@ -21,6 +21,8 @@ def return_all_foods():
     for prod in db_data:
         json_item = json.loads('{"id" : %d, "ProductName" : "%s", "WaterCost" : %s}' % (prod[0], prod[1], prod[2]))
         product_list.append(json_item)
+
+    print(product_list)
     return json.dumps(product_list)
 
 
@@ -36,9 +38,22 @@ def return_all_recipes():
 
 @app.route("/api/v1/calculate_water_score", methods=["POST"])
 def calculate_water_score():
-    print(request.data)
-
-# def reedem_points_for_local_purchases():
+    data_body = json.loads(request.form.get('data'))
+    id_list = [item['id'] for item in data_body]
+    id_string = ','.join(str(x) for x in id_list)
+    id_string = '(' + id_string + ')'
+    db_data = cur.execute("SELECT * FROM FoodItems WHERE id in %s" % (id_string)).fetchall()
+    response_body = {'total_water': 0, 'data_body': []}
+    for data_point in db_data:
+        for val in data_body:
+            if data_point[0] == val.get('id'):
+                new_response = {}
+                new_response['individual_sum']= int(val.get('quantity'))*data_point[2]
+                response_body['total_water'] = response_body['total_water'] + new_response['individual_sum']
+                new_response['id'] = data_point[0]
+                new_response['ingredient'] = data_point[1]
+                response_body.get('data_body').append(new_response)
+    return json.dumps(response_body)
 
 if __name__ == '__main__':
     app.run(debug=True)
