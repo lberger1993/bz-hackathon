@@ -2,8 +2,8 @@ angular.module('HelloWorldApp', [])
     .controller('HelloWorldController', ['$scope', '$http', function($scope, $http) {
         $scope.ingredients = [];
         $scope.newIngredient = "";
-        $scope.foodList = "";
         $scope.query = "";
+        $scope.waterAmount = 0.0;
 
         $http({
             method: 'GET',
@@ -20,7 +20,10 @@ angular.module('HelloWorldApp', [])
 
         //TODO move this somewhere:
         $scope.addIngredient = function(newIngredient) {
+            //TODO replace with real amount
+            newIngredient.waterAmount = 1000;
             $scope.ingredients.push(newIngredient);
             $scope.query = "";
+            $scope.waterAmount += newIngredient.WaterCost * newIngredient.waterAmount / 1000.0;
         }
     }]);
