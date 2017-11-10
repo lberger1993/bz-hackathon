@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose a Recipe</title>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <script src="../assets/js/chooseRecipeController.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+  body{
+      background: #7986CB ;
+  }
+  .carousel-inner  .item{
+
+ width:1200px;
+  height:460px;
+
+
+    }
+</style>
+</head>
+<body style=" background: #7986CB">
+<div ng-app = "chooseRecipeApp">
+    <div ng-controller = "chooseRecipeController">
+<div class="row">
+
+
+                   <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+             <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+             <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+  <!-- Wrapper for slides -->
+
+
+                <div class="carousel-inner">
+                <div class="item active">
+               <img src="../assets/img/spaghetti-bolognese.jpeg"  alt="spaghetti bolognese">
+         </div>
+
+
+
+
+        <div class="item">
+         <img src="../assets/img/pizza.jpg" alt="pizza">
+        </div>
+
+            <div class="item">
+          <img src="../assets/img/pasta.jpg"  alt="pasta">
+        </div>
+     </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+    </div>
+    <div class="col-sm-12"></div>
+
+</div>
+
+
+
+
+
+        <h1 >Choose a Recipe</h1>
+
+
+        <input type="search" placeholder="Choose a Recipe" ng-model = "SearchRecipe">
+
+
+
+        <div ng-repeat = "i in image">
+              <p>{{ i.imageName }}</p>
+        </div>
+
+
+
+      <div ng-repeat ="i in image">
+
+            <div ng-if = " SearchRecipe == i.imageName  "  >{{ i.imageSrc }}
+                 <img ng-src =  "{{i.imageSrc}}"  width="50%"  height="50%">
+
+
+            </div>
+
+      </div>
+
+
+
+</div>
+
+<div class="col-sm-3"></div>
+         </div>
+
+</body>
+</html>
