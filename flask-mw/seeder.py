@@ -16,6 +16,7 @@ cur.executescript("""
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('cotton', '2495');
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('Pasta (dry) ', '1849'); 
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('Bread', '1608');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Bread', '1608');
     """)
 
 
