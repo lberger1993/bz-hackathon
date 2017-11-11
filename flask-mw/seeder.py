@@ -1,6 +1,10 @@
 import sqlite3
 
-conn = sqlite3.connect('../data/WaterFP.sqlite')
+import os.path
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, 'WaterFP.sqlite')
+conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 
 

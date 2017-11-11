@@ -1,7 +1,12 @@
 import sqlite3
 import json
 
-conn = sqlite3.connect('../data/WaterFP.sqlite', check_same_thread=False)
+import os.path
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, 'WaterFP.sqlite')
+
+conn = sqlite3.connect(db_path, check_same_thread=False)
 cur = conn.cursor()
 
 def get_product_list():
