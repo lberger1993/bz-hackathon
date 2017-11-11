@@ -1,5 +1,5 @@
 angular.module('HelloWorldApp', [])
-    .controller('AddIngredientsController', ['$scope', '$http', function($scope, $http) {
+    .controller('AddIngredientsController', ['$scope', '$http', function ($scope, $http) {
         $scope.ingredients = [];
         $scope.newIngredient = "";
         $scope.query = "";
@@ -17,10 +17,10 @@ angular.module('HelloWorldApp', [])
             //TODO add error processing
         });
 
-        var removeItemFromArray = function(array, item){
+        var removeItemFromArray = function (array, item) {
             var tmp = [];
-            for(var index in array){
-                if(array[index].ProductName != item.ProductName){
+            for (var index in array) {
+                if (array[index].ProductName != item.ProductName) {
                     tmp.push(array[index]);
                 }
             }
@@ -34,7 +34,7 @@ angular.module('HelloWorldApp', [])
             return ingredient.WaterCost > threshold;
         };
 
-        $scope.addIngredient = function(newIngredient) {
+        $scope.addIngredient = function (newIngredient) {
             $scope.savedIngredients = removeItemFromArray($scope.savedIngredients, newIngredient);
             $scope.ingredients.push(newIngredient);
             newIngredient.amount = 1000;
@@ -42,16 +42,16 @@ angular.module('HelloWorldApp', [])
             updateTotalAmount();
         };
 
-        $scope.onLoseFocus = function() {
+        $scope.onLoseFocus = function () {
             $scope.currentAmount = 1000;
             updateTotalAmount();
         };
 
-        var updateTotalAmount = function() {
+        var updateTotalAmount = function () {
             $scope.waterAmount = 0.0;
-            $scope.ingredients.forEach(function(ingredient) {
+            $scope.ingredients.forEach(function (ingredient) {
                 $scope.waterAmount += ingredient.WaterCost * ingredient.amount / 1000.0;
             });
-            $scope.waterAmount = Math.floor( $scope.waterAmount );
+            $scope.waterAmount = Math.floor($scope.waterAmount);
         };
     }]);
