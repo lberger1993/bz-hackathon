@@ -14,30 +14,18 @@ angular.module('chooseRecipeApp', [])
        }, function errorCallback(response) {
            //TODO add error processing
        });
-          $scope.selected_recipe = 'pizza';
-          $scope.matrix;
-          $http({
-           method: 'GET',
-           url: '/api/v1/get_recipe_partners'
-       }).then(function successCallback(response) {
-            $scope.matrix = response.data;
-            console.log($scope.matrix )
+       $scope.optomize = function(recipe_id){
+        $scope.alternatives = [];
+        for (var element in $scope.Foodrecipes ){
+            if ($scope.Foodrecipes[element]['RecipeID'] == recipe_id){
+                for (var val in $scope.Foodrecipes[element]['FoodItems']){
+                    $scope.alternatives.push({'alternates': $scope.Foodrecipes[element]['FoodItems'][val]['Alternative']});
+                    $scope.alternatives.push({'water_scores': $scope.Foodrecipes[element]['FoodItems'][val]['AlternativeAmountInRecipe']})
+                }
 
-       }, function errorCallback(response) {
-           //TODO add error processing
-       });
-          $scope.selected_recipe = 'pizza';
-          $scope.optimizeOption = function(recipe_id){
-          for (var row in $scope.matrix){
-                  $scope.matrix[row]['id']
-                  if ($scope.matrix[row]['bad_id'] == recipe_id){
-                       var optimized_recipeID = $scope.matrix[row]['good_recipe']
-                       for (var option in $scope.Foodrecipes){
-                           if (optimized_recipeID == $scope.Foodrecipes[option]['RecipeID'])
-                               $scope.best_option =$scope.Foodrecipes[option];
-                               console.log('my best choice', $scope.best_option);
-                           }
-                       }
-               }
-          }
+            }
+        }
+
+       }
+
 }]);
