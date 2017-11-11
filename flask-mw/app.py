@@ -24,7 +24,6 @@ def return_all_recipes():
     return json.dumps(get_all_recipies())
 
 
-
 @app.route("/api/v1/calculate_water_score", methods=["POST"])
 def calculate_water_score():
     data_body = json.loads(request.form.get('data'))
