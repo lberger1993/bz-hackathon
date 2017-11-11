@@ -1,8 +1,14 @@
 import sqlite3
 import json
 
-conn = sqlite3.connect('../data/WaterFP.sqlite', check_same_thread=False)
+import os.path
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, 'WaterFP.sqlite')
+
+conn = sqlite3.connect(db_path, check_same_thread=False)
 cur = conn.cursor()
+
 
 def get_product_list():
     db_data = cur.execute("SELECT * FROM FoodItems").fetchall()
@@ -17,10 +23,8 @@ def get_all_recipies():
     result=[]
     all_rec_ids= cur.execute("SELECT ID FROM RECIPIES").fetchall()
     for id in all_rec_ids:
-        print(id[0])
         result.append(get_recipe(id[0]))
-    return result
-
+    return json.dumps(result)
 
 def get_recipe(recipeID):
     db_rec = cur.execute("SELECT * FROM RECIPIES WHERE ID = ?", (str(recipeID),)).fetchone()
@@ -40,10 +44,18 @@ def get_recipe(recipeID):
             foodItems.append(curr_str)
         food_items_str = ",".join(foodItems)
         json_str+=food_items_str
-        json_str += ']'
+        json_str += "]"
     json_str += "}"
-    res=json.loads(json_str)
-    return res
+    res=json_str
+    return json.loads(res, strict=False)
+
+def get_load_recipes_partners_tables():
+    db_data = cur.execute("SELECT * FROM RecipePartners").fetchall()
+    return_list = []
+    for val in db_data:
+        json_item = json.loads('{"id" : %d, "bad_recipe" : "%s", "good_recipe" : %s}' % (val[0], val[1], val[2]))
+        return_list.append(json_item)
+    return json.dumps(return_list)
 
 
 def data_calculate_water_score(data_body):

@@ -1,9 +1,10 @@
 angular.module('HelloWorldApp', [])
-    .controller('HelloWorldController', ['$scope', '$http', function($scope, $http) {
+    .controller('AddIngredientsController', ['$scope', '$http', function($scope, $http) {
         $scope.ingredients = [];
         $scope.newIngredient = "";
         $scope.query = "";
-        $scope.waterAmount = 0.0;
+        $scope.currentAmount = 1000;
+        $scope.waterAmount = 0;
 
         $http({
             method: 'GET',
@@ -20,10 +21,22 @@ angular.module('HelloWorldApp', [])
 
         //TODO move this somewhere:
         $scope.addIngredient = function(newIngredient) {
-            //TODO replace with real amount
-            newIngredient.waterAmount = 1000;
             $scope.ingredients.push(newIngredient);
+            newIngredient.amount = 1000;
             $scope.query = "";
-            $scope.waterAmount += newIngredient.WaterCost * newIngredient.waterAmount / 1000.0;
-        }
+            $scope.updateTotalAmount();
+        };
+
+        $scope.onLoseFocus = function() {
+            $scope.currentAmount = 1000;
+            $scope.updateTotalAmount();
+        };
+
+        $scope.updateTotalAmount = function() {
+            $scope.waterAmount = 0.0;
+            $scope.ingredients.forEach(function(ingredient) {
+                $scope.waterAmount += ingredient.WaterCost * ingredient.amount / 1000.0;
+            });
+            $scope.waterAmount = Math.floor( $scope.waterAmount );
+        };
     }]);

@@ -1,37 +1,12 @@
 import sqlite3
 
-conn = sqlite3.connect('../data/WaterFP.sqlite')
+import os.path
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, 'WaterFP.sqlite')
+conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 
-
-# coffee
-# 18900
-# Beef beef
-# 15400
-# Sheep sheep
-# 10400
-# Pork pork
-# 6000
-# Goat goat
-# 5500
-# Chicken chicken
-# 4300
-# Cheese cheese
-# 3180
-# Rice rice
-# 2500
-# Soyabeans soyabeans
-# 2145
-# Wheat wheat
-# 1830
-# Sugar sugar
-# 1780
-# Barley barley
-# 1425
-# Maize maize
-# 1220
-# Apple apple
-# 822
 cur.executescript("""
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('Chocolate', '17196');
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('Beef', '15415');
@@ -45,8 +20,15 @@ cur.executescript("""
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('cotton', '2495');
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('Pasta (dry) ', '1849'); 
     insert into FoodItems (FoodItemName, WaterPerKilo) values ('Bread', '1608');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Bread', '1608');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Bread', '1608');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Apple', '822');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('maize', '822');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Barley', '1425');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Sugar', '1780');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('wheat', '1830');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('soyabeans', '2145');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('goat', '5500');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('pork', '6000');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('sheep', '6000');
+    insert into FoodItems (FoodItemName, WaterPerKilo) values ('coffee', '18900');
     """)
-    # appropriate &
 
