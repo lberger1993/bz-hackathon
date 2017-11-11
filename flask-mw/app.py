@@ -28,5 +28,10 @@ def calculate_water_score():
     return data_calculate_water_score(data_body)
 
 
+@app.route('/api/v1/get_recipe_partners', methods=['GET'])
+def return_recipe_partners():
+    return get_load_recipes_partners_tables()
+
+
 if __name__ == '__main__':
     app.run(debug=True)
