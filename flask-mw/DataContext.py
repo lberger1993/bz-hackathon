@@ -9,6 +9,7 @@ db_path = os.path.join(BASE_DIR, 'WaterFP.sqlite')
 conn = sqlite3.connect(db_path, check_same_thread=False)
 cur = conn.cursor()
 
+
 def get_product_list():
     db_data = cur.execute("SELECT * FROM FoodItems").fetchall()
     product_list = []
@@ -21,11 +22,10 @@ def get_product_list():
 def get_all_recipies():
     result=[]
     all_rec_ids= cur.execute("SELECT ID FROM RECIPIES").fetchall()
+    print(all_rec_ids)
     for id in all_rec_ids:
-        print(id[0])
         result.append(get_recipe(id[0]))
-    return result
-
+    return json.dumps(result)
 
 def get_recipe(recipeID):
     db_rec = cur.execute("SELECT * FROM RECIPIES WHERE ID = ?", (str(recipeID),)).fetchone()
@@ -45,10 +45,10 @@ def get_recipe(recipeID):
             foodItems.append(curr_str)
         food_items_str = ",".join(foodItems)
         json_str+=food_items_str
-        json_str += ']'
+        json_str += "]"
     json_str += "}"
-    res=json.loads(json_str)
-    return res
+    res=json_str
+    return json.loads(res, strict=False)
 
 
 def data_calculate_water_score(data_body):
