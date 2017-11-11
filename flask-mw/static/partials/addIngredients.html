@@ -39,7 +39,8 @@
                         <span class="input-group-addon">
                         <span class="glyphicon glyphicon-search"></span>
                         </span>
-                         <input type="text" name="demo-name" id="demo-name" value="" placeholder="What's your next ingredient" ng-model="query">
+                         <input type="text" name="demo-name" id="demo-name" value=""
+                                placeholder="What's your next ingredient" ng-model="query">
                      </div>
                      <div ng-show="query != ''" role="presentation" ng-repeat='item in savedIngredients | filter:query'>
                         <a ng-click="addIngredient(item)" href="#"> {{item.ProductName}} </a>
@@ -49,7 +50,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-6 col-ms-6">
                <div ng-show="ingredients.length">
-                   <div ng-if="ingredients" > <div style="text-transform:uppercase;font-size:45px;"> <strong> Total Water Score: </strong> <a class="special"> {{waterAmount}} </a> </div></div>
+                   <div ng-if="ingredients" >
+                       <div style="text-transform:uppercase;font-size:45px;">
+                           <strong> Total Water Score: </strong>
+                           <a class="special"> {{waterAmount}} </a>
+                       </div>
+                   </div>
                   <ul class="list-unstyled">
                      <li ng-repeat="ingredient in ingredients track by $index" style="font-size:30px;">
                         <div class="row">
