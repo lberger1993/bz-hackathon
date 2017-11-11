@@ -18,13 +18,15 @@
       <div id="wrapper">
       <!-- Header -->
       <header id="header" class="alt">
-         <a href="index.html" class="logo">Water  <span>  <strong>Score </strong></span></a>
+         <a href="index.html" class="logo">Water
+             <span>  <strong>Score </strong></span>
+         </a>
          <nav>
             <a href="#menu">Menu</a>
          </nav>
       </header>
       <section id="one">
-          <div class="inner" ng-controller="HelloWorldController">
+          <div class="inner" ng-controller="AddIngredientsController">
             <div class="row">
             <div class="col-xs-12 col-lg-6 col md-6 col-sm-12">
                <header class="major">
@@ -51,8 +53,13 @@
                   <ul class="list-unstyled">
                      <li ng-repeat="ingredient in ingredients track by $index" style="font-size:30px;">
                         <div class="row">
-                            <div class="col-xs-5 col-lg-8"> {{ingredient.ProductName}} <strong> {{ingredient.WaterCost}} </strong> <span ng-if="ingredient.WaterCost> 500" style="color:red;"> !! </span> </div>
-                            <div class="col-xs-5 col-lg-4"><input type="text" value="" placeholder="quantity" class="form-control"></div>
+                            <div class="col-xs-5 col-lg-8"> {{ingredient.ProductName}}
+                                <strong> {{ingredient.WaterCost}} </strong>
+                                <span ng-if="ingredient.WaterCost> 500" style="color:red;"> !! </span>
+                            </div>
+                            <div class="col-xs-5 col-lg-4">
+                                <input type="text" value="" placeholder="quantity" class="form-control">
+                            </div>
                       </div>
                      </li>
                   </ul>
