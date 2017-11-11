@@ -8,27 +8,22 @@ conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 
 cur.executescript("""
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Chocolate', '17196');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Beef', '15415');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Sheep Meat ', '10412');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Pork', '5988');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Butter', '5553');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('chicken meat', '4325');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('cheese', '3178');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('olives', '3025');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('rice', '2497');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('cotton', '2495');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Pasta (dry) ', '1849'); 
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Bread', '1608');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Apple', '822');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('maize', '822');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Barley', '1425');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('Sugar', '1780');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('wheat', '1830');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('soyabeans', '2145');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('goat', '5500');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('pork', '6000');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('sheep', '6000');
-    insert into FoodItems (FoodItemName, WaterPerKilo) values ('coffee', '18900');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Chocolate', '17196', 'Milk Products', '1006' );
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Beef', '15415', 'Mushrooms', '250');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Sheep Meat ', '10412', 'Mushrooms', '250');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Pork', '5988', 'Carrots', '250');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Butter', '5553',  'Soya', '250');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('chicken meat', '4325', 'eggs', '183');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('cheese', '3178', 'Nutritional Yeast', '200');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('olives', '3025', 'none', 'none');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('rice', '2497', 'none', 'none');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('cotton', '2495', 'none', 'none');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Pasta (dry) ', '1849', 'none', 'none'); 
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Bread', '1608', 'none', 'none');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Apple', '822', 'none', 'none' );
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('maize', '822', 'none', 'none' );
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Barley', '1425', 'none', 'none');
+    insert into FoodItems (FoodItemName, WaterPerKilo, AlternativeFoodItem, AlternativeWaterPerKilo) values ('Sugar', '1780', 'none', 'none');
+   
     """)
 

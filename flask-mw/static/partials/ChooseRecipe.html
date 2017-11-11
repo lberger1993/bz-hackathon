@@ -10,84 +10,133 @@
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      <link rel="stylesheet" href="../assets/css/main.css" />
+   <!--&lt;!&ndash;[if lte IE 9]><link rel="stylesheet" href="./assets/css/ie9.css" /><![endif]&ndash;&gt;-->
+     <!--&lt;!&ndash;[if lte IE 8]><link rel="stylesheet" href="/static/assets/css/ie8.css" /><![endif]&ndash;&gt;-->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body style=" background: #7986CB ">
-<div ng-app = "chooseRecipeApp">
-   <div ng-controller = "chooseRecipeController">
-         <img src = "../assets/img/Wallpaper.jpg" width="1500dp" height="450dp">
-   <h2>Choose a Recipe</h2>
+<body style=" background: #242943 ">
+<div  ng-app = "chooseRecipeApp">
+
+    <div id="wrapper">
+  <header id="header" class="alt">
+        <a href="index.html" class="logo">Water
+            <span>  <strong>Score </strong></span>
+        </a>
+        <nav>
+           <a href="#menu">Menu</a>
+        </nav>
+     </header>
+
+     <section id="one">
+   <div class="inner" ng-controller = "chooseRecipeController">
+
+       <!-- Layout-->
+<div class="row">
+
+   <div class="col-sm-6">
+
+       <header class="major">
+         <h2>  Choose a Recipe</h2></header>
 
    <select name="repeatSelect" style = " background: #999999 " id="repeatSelect" ng-model="data.selected_recipe">
      <option  ng-init="data.selected_recipe = item.RecipeName[0]"   ng-repeat="item in Foodrecipes" value="{{item.RecipeID}}">{{item.RecipeName}}</option>
    </select>
-       <div class="row">
-           <div class="col-sm-6">
+   </div>
 
-        <div ng-if="!optimal">
-        <div ng-repeat="item in Foodrecipes">
-       <div ng-if="item.RecipeID == data.selected_recipe ">
-           <br>
-           <table>
-               <thead>
-               <tr>
-                   <th>Product Name:</th>
-                   <th>Water Per Kilo</th>
-                   <th>Amount In Recipe</th>
-               </tr>
-               </thead>
+   <div class="col-sm-6">
 
-               <tbody id="tableEnt" ng-style = "{'background-color':'#ff6666 '}"   ng-repeat = "elem in item.FoodItems" ng-if= "elem.WaterPerKilo >= 2000"  >
-               <td >{{ elem.ProductName }}</td>
-               <td  >{{ elem.WaterPerKilo }}</td>
-               <td >{{ elem.AmountInRecipe }}</td>
+        <img src = "../assets/img/Wallpaper.jpg" width="500dp" height="250dp">
 
-               </tbody>
-                 <tbody id="tableEnt"  ng-repeat = "elem in item.FoodItems" ng-if= "elem.WaterPerKilo < 2000"  >
-               <td >{{ elem.ProductName }}</td>
-               <td  >{{ elem.WaterPerKilo }}</td>
-               <td >{{ elem.AmountInRecipe }}</td>
-               </tbody>
-           </table>
-            <a href="#" class="button special" ng-click="optomize(item.RecipeID)">Optimize!</a>
-           {{alternatives}}
-
-       </div>
-       </div>
+   </div>
 </div>
 
-
-
-
-                   </div>
-
-               <div class="col-sm-12"></div>
-           </div>
-
-       </div>
-
-
-
-
-      </div>
-
-       <!--div class="row">
-           <!-- <div class="col-sm-6">
-               <img src = "../assets/img/pasta_new.jpg" width="600dp" height="350dp">
-           </div>
-           <div class="col-sm-6">
-               <img src = "../assets/img/lasagna_new.jpg" width="75%" height="75%" >
-           </div>
+<div class="row">
 
            <div class="col-sm-6">
-               <img src = "../assets/img/pasta-spaghetti-3_new.jpg" width="75%" height="75%">
-           </div>-->
 
-<script>
 
-</script>
+            <div ng-repeat="item in Foodrecipes">
+               <div ng-if="item.RecipeID == data.selected_recipe ">
+                  <a href="#" class="button special" ng-click="optomize(item.RecipeID)">Optimize!</a>
+               <br>
+               <table>
+                   <thead>
+                        <tr>
+                             <th>Product Name:</th>
+                            <th>Water Per Kilo</th>
+                            <th>Amount In Recipe</th>
+                        </tr>
+                    </thead>
 
+                    <tbody id="tableEnt" ng-style = "{'background-color':'#ff6666 '}"   ng-repeat = "elem in item.FoodItems" ng-if= "elem.WaterPerKilo >= 2000"  >
+
+                       <td >{{ elem.ProductName }}</td>
+                        <td>{{ elem.WaterPerKilo }}</td>
+                       <td >{{ elem.AmountInRecipe }}</td>
+
+
+
+
+
+
+                    </tbody>
+
+                 <tbody id="tableEnt"  ng-repeat = "elem in item.FoodItems" ng-if= "elem.WaterPerKilo < 2000"  >
+
+                         <td >{{ elem.ProductName }}</td>
+                         <td  >{{ elem.WaterPerKilo }}</td>
+                         <td >{{ elem.AmountInRecipe }}</td>
+
+
+
+
+
+
+                    </tbody>
+
+                </table>
+
+                  <div ng-if="alternatives_rendered">
+                  <h1> Scan me ! </h1>
+                     <p> Receive discount at local stores in South Tyrol</p>
+                     <img src = "../assets/img/qr.png">
+                  </div>
+           </div>
+
+        </div>
+
+    </div>
+            <div class="col-sm-6" ng-if="alternatives_rendered">
+               <br>
+                Your <strong> water-scored </strong> alternatives!
+                <br>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Product Name:</th>
+                        <th>Water Per Kilo</th>
+                        <th>Amount In Recipe</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableEnt" ng-style = "{'background-color':'#81CFE0 '}"   ng-repeat = "elem in alternatives"  >
+                    <td>{{ elem.alternates }}</td>
+                    <td  >{{ elem.water_scores }}</td>
+                    <td  >{{elem.id}} </td>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+</div>
+
+   </div>
+     </section>
+    </div>
+</div>
 </body>
+
+
 </html>

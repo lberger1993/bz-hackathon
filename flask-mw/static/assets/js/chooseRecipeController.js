@@ -16,11 +16,14 @@ angular.module('chooseRecipeApp', [])
        });
        $scope.optomize = function(recipe_id){
         $scope.alternatives = [];
+        $scope.alternatives_rendered = false;
         for (var element in $scope.Foodrecipes ){
             if ($scope.Foodrecipes[element]['RecipeID'] == recipe_id){
                 for (var val in $scope.Foodrecipes[element]['FoodItems']){
-                    $scope.alternatives.push({'alternates': $scope.Foodrecipes[element]['FoodItems'][val]['Alternative']});
-                    $scope.alternatives.push({'water_scores': $scope.Foodrecipes[element]['FoodItems'][val]['AlternativeAmountInRecipe']})
+                    console.log($scope.Foodrecipes[element]['FoodItems'][val]['FoodIemID']);
+                    $scope.alternatives_rendered = true;
+                    $scope.alternatives.push({'id': $scope.Foodrecipes[element]['FoodItems'][val]['FoodIemID'], 'alternates': $scope.Foodrecipes[element]['FoodItems'][val]['Alternative'], 'water_scores': $scope.Foodrecipes[element]['FoodItems'][val]['AlternativeAmountInRecipe']});
+                    //$scope.alternatives.push({'water_scores': $scope.Foodrecipes[element]['FoodItems'][val]['AlternativeAmountInRecipe']})
                 }
 
             }
