@@ -2,7 +2,7 @@ from flask import Flask, send_file, request
 from DataContext import *
 import qrcode
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 
 # app.config['TEMPLATES_AUTO_RELOAD'] = True
