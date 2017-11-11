@@ -64,7 +64,8 @@
                                 <span ng-if="ingredient.WaterCost> 500" style="color:red;"> !! </span>
                             </div>
                             <div class="col-xs-5 col-lg-4">
-                                <input type="text" value="" placeholder="quantity" class="form-control">
+                                <input id="inp{{$index + 1}}" type="text" ng-model="ingredient.amount" value="" ng-change="onLoseFocus()"
+                                       placeholder="amount" class="form-control">
                             </div>
                       </div>
                      </li>
