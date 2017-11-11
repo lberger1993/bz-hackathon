@@ -6,10 +6,10 @@
       <meta charset="utf-8" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
       <!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
-      <!--&lt;!&ndash;[if lte IE 8]><script src="/static/assets/js/ie/html5shiv.js"></script><![endif]&ndash;&gt;-->
+      <!--&lt;!&ndash;[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]&ndash;&gt;-->
       <link rel="stylesheet" href="../assets/css/main.css" />
-      <!--&lt;!&ndash;[if lte IE 9]><link rel="stylesheet" href="./assets/css/ie9.css" /><![endif]&ndash;&gt;-->
-      <!--&lt;!&ndash;[if lte IE 8]><link rel="stylesheet" href="/static/assets/css/ie8.css" /><![endif]&ndash;&gt;-->
+      <!--&lt;!&ndash;[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]&ndash;&gt;-->
+      <!--&lt;!&ndash;[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]&ndash;&gt;-->
    </head>
    <body ng-app="HelloWorldApp">
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -21,6 +21,9 @@
          <a href="index.html" class="logo">Water
              <span>  <strong>Score </strong></span>
          </a>
+         <nav>
+            <a href="#menu">Menu</a>
+         </nav>
       </header>
       <section id="one">
           <div class="inner" ng-controller="AddIngredientsController">
@@ -29,6 +32,7 @@
                <header class="major">
                   <h2> Enter your ingredients</h2>
                </header>
+               <span>{{foodList}}</span>
                 <div class="dropdown dropdown-scroll">
                   <ul>
                      <div class="input-group input-group-sm search-control" style="width:100%;">
@@ -41,9 +45,6 @@
                      <div ng-show="query != ''" role="presentation" ng-repeat='item in savedIngredients | filter:query'>
                         <a ng-click="addIngredient(item)" href="#"> {{item.ProductName}} </a>
                      </div>
-                      <div ng-if="(savedIngredients | filter:query).length == 0" style="color:#ff877c;">
-                          No matches
-                      </div>
                   </ul>
                </div>
             </div>
@@ -52,10 +53,8 @@
                    <div ng-if="ingredients" >
                        <div style="text-transform:uppercase;font-size:45px;">
                            <strong> Total Water Score: </strong>
-                           <span>
-                               <a class="special"> {{waterAmount}} </a>
-                               <span  style="color:#06e6ff;">liters</span>
-                           </span>
+                           <a class="special"> {{waterAmount}} </a>
+                           <span  style="color:#06e6ff;">liters</span>
                        </div>
                    </div>
                   <ul class="list-unstyled">
@@ -63,7 +62,7 @@
                         <div class="row" style="border-bottom: 1px dashed #06e6ff; padding-top: 5px;">
                             <div class="col-xs-5 col-sm-6 col-md-2 col-lg-6"> {{ingredient.ProductName}}
                                 <strong> {{ingredient.WaterCost}} </strong>
-                                <span ng-if="aLotOfWater(ingredient)" style="color:#ff877c;"> !! </span>
+                                <span ng-if="ingredient.WaterCost> 500" style="color:red;"> !! </span>
                                 <span  style="color:#06e6ff; font-size: 17px;">liters</span>
                             </div>
 

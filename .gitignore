@@ -103,3 +103,4 @@ ENV/
 #idea files
 .idea
 
+/flask-mw/WaterFP.sqlite
