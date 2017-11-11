@@ -15,12 +15,21 @@ angular.module('HelloWorldApp', [])
             //TODO add error processing
         });
 
+        var removeItemFromArray = function(array, item){
+            var tmp = [];
+            for(var index in array){
+                if(array[index].ProductName != item.ProductName){
+                    tmp.push(array[index]);
+                }
+            }
+            return tmp;
+        };
 
 
         //TODO remove this from HelloWorld to smth better
 
-        //TODO move this somewhere:
         $scope.addIngredient = function(newIngredient) {
+            $scope.savedIngredients = removeItemFromArray($scope.savedIngredients, newIngredient);
             $scope.ingredients.push(newIngredient);
             newIngredient.amount = 1000;
             $scope.query = "";
