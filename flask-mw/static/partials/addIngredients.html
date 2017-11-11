@@ -51,7 +51,7 @@
                   <ul class="list-unstyled">
                      <li ng-repeat="ingredient in ingredients track by $index" style="font-size:30px;">
                         <div class="row">
-                            <div class="col-xs-5 col-lg-8"> {{ingredient.ProductName}} <strong> {{ingredient.WaterCost}} </strong></div>
+                            <div class="col-xs-5 col-lg-8"> {{ingredient.ProductName}} <strong> {{ingredient.WaterCost}} </strong> <span ng-if="ingredient.WaterCost> 500" style="color:red;"> !! </span> </div>
                             <div class="col-xs-5 col-lg-4"><input type="text" value="" placeholder="quantity" class="form-control"></div>
                       </div>
                      </li>
