@@ -18,7 +18,8 @@ def return_all_foods():
 
 @app.route("/api/v1/get_all_recipes", methods=['GET'])
 def return_all_recipes():
-    return json.dumps(get_all_recipies())
+    # print(get_all_recipies())
+    return get_all_recipies()
 
 
 @app.route("/api/v1/calculate_water_score", methods=["POST"])
