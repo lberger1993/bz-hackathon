@@ -1,32 +1,35 @@
-from flask import Flask, send_file
-from flask_restful import Resource, Api
+from DataContext import *
+from flask import Flask, send_file, request
+
+
 
 app = Flask(__name__)
-api = Api(app)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-#
-# class HelloWorld(Resource):
-#     def get(self):
-#         return {'hello': 'world'}
-
-#
-# class GetInitalRecipes(Resource):
-#     def get(self):
-#         # return
-#         {recipe_list: [{
-#                 recipe_name:
-#
-#         }]}
+conn = sqlite3.connect('../data/WaterFP.sqlite', check_same_thread=False)
+cur = conn.cursor()
 
 @app.route("/")
 def index():
     return send_file("templates/index.html")
 
 
+@app.route("/api/v1/get_all_food", methods=['GET'])
+def return_all_foods():
+    return get_product_list()
+
+
+@app.route("/api/v1/get_all_recipes", methods=['GET'])
+def return_all_recipes():
+    return json.dumps(get_all_recipies())
 
 
 
-# api.add_resource(HelloWorld, '/hello')
+@app.route("/api/v1/calculate_water_score", methods=["POST"])
+def calculate_water_score():
+    data_body = json.loads(request.form.get('data'))
+    return data_calculate_water_score(data_body)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
