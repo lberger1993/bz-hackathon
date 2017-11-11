@@ -17,7 +17,6 @@ def get_product_list():
 def get_all_recipies():
     result=[]
     all_rec_ids= cur.execute("SELECT ID FROM RECIPIES").fetchall()
-    print(all_rec_ids)
     for id in all_rec_ids:
         result.append(get_recipe(id[0]))
     return json.dumps(result)
@@ -44,6 +43,14 @@ def get_recipe(recipeID):
     json_str += "}"
     res=json_str
     return json.loads(res, strict=False)
+
+def get_load_recipes_partners_tables():
+    db_data = cur.execute("SELECT * FROM RecipePartners").fetchall()
+    return_list = []
+    for val in db_data:
+        json_item = json.loads('{"id" : %d, "bad_recipe" : "%s", "good_recipe" : %s}' % (val[0], val[1], val[2]))
+        return_list.append(json_item)
+    return json.dumps(return_list)
 
 
 def data_calculate_water_score(data_body):
