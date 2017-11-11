@@ -41,6 +41,9 @@
                      <div ng-show="query != ''" role="presentation" ng-repeat='item in savedIngredients | filter:query'>
                         <a ng-click="addIngredient(item)" href="#"> {{item.ProductName}} </a>
                      </div>
+                    <div ng-if="(savedIngredients | filter:query).length == 0" style="color:#ff877c;">
+                        No matches
+                    </div>
                   </ul>
                </div>
             </div>
@@ -58,7 +61,7 @@
                         <div class="row" style="border-bottom: 1px dashed #06e6ff; padding-top: 5px;">
                             <div class="col-xs-5 col-sm-6 col-md-2 col-lg-6"> {{ingredient.ProductName}}
                                 <strong> {{ingredient.WaterCost}} </strong>
-                                <span ng-if="aLotOfWater(ingredient)" style="color:red;"> !! </span>
+                                <span ng-if="aLotOfWater(ingredient)" style="color:#ff877c;"> !! </span>
                                 <span  style="color:#06e6ff; font-size: 17px;">liters</span>
                             </div>
 
