@@ -41,8 +41,8 @@ def get_qr_code():
     recipe = get_recipe(recipe_id)
     qrText = str(recipe["RecipeID"]) + ' ' + recipe["RecipeName"]
     qr_img = qrcode.make(qrText)
-    #qr_img.show()
-    print(type(qr_img))
+    qr_img.show()
+
     return qr_img
 
 
