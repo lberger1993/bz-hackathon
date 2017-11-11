@@ -32,15 +32,15 @@ def get_recipe(recipeID):
         res = json.loads('{"Message" : "Data Not Found"}')
         return res
     json_str = "{{\"RecipeID\" : {:d}, \"RecipeName\" : \"{}\"".format(db_rec[0], db_rec[1])
-    query = '''SELECT f.ID, f.FoodItemName, f.WaterPerKilo, r.AmountInKilo  FROM FoodItems AS f INNER JOIN RecipeItems AS r on f.ID=r.FoodItemID WHERE r.RecipeID = {:d}'''.format(
+    query = '''SELECT f.ID, f.FoodItemName, f.WaterPerKilo, r.AmountInKilo, f.AlternativeFoodItem, f.AlternativeWaterPerKilo FROM FoodItems AS f INNER JOIN RecipeItems AS r on f.ID=r.FoodItemID WHERE r.RecipeID = {:d}'''.format(
         db_rec[0])
     db_fooditems = cur.execute(query).fetchall()
     foodItems=[]
     if len(db_fooditems)>0:
         json_str+=',"FoodItems" : ['
         for item in db_fooditems:
-            curr_str='{"FoodIemID" : %d, "ProductName" : "%s", "WaterPerKilo" : %d, "AmountInRecipe" : %s }'\
-                     %(item[0], item[1], item[2], str(item[3]))
+            curr_str='{"FoodIemID" : %d, "ProductName" : "%s", "WaterPerKilo" : %d, "AmountInRecipe" : %s,  "Alternative" : "%s", "AlternativeAmountInRecipe": "%s"  }'\
+                     %(item[0], item[1], item[2], str(item[3]), item[4], item[5])
             foodItems.append(curr_str)
         food_items_str = ",".join(foodItems)
         json_str+=food_items_str
