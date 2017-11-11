@@ -20,7 +20,6 @@ def return_all_foods():
 
 @app.route("/api/v1/get_all_recipes", methods=['GET'])
 def return_all_recipes():
-    # print(get_all_recipies())
     return get_all_recipies()
 
 
@@ -30,9 +29,9 @@ def calculate_water_score():
     return data_calculate_water_score(data_body)
 
 
-@app.route('/api/v1/get_recipe_partners', methods=['GET'])
-def return_recipe_partners():
-    return get_load_recipes_partners_tables()
+# @app.route('/api/v1/get_recipe_partners', methods=['GET'])
+# def return_recipe_partners():
+#     return get_load_recipes_partners_tables()
 
 
 @app.route('/api/v1/get_qr_code', methods=['POST'])
