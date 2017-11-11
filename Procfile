@@ -1,1 +1,1 @@
-web: cd flask-mw && python deleteFoodItems.py && python seeder.py && gunicorn app:app
+web: cd flask-mw && gunicorn app:app
