@@ -7,9 +7,9 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
     <script src="../assets/js/chooseRecipeController.js"></script>
-     <link rel="stylesheet" href="../assets/css/main.css" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet"  href="../assets/css/myCarousel.css">
+      <link rel="stylesheet" href="../assets/css/main.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -20,40 +20,18 @@
     <h1>Choose a Recipe</h1>
 
     <select name="repeatSelect" id="repeatSelect" ng-model="data.selected_recipe">
-      <option ng-repeat="item in Foodrecipes" value="{{item}}">{{item.RecipeName}}</option>
+      <option ng-repeat="item in Foodrecipes" value="{{item.RecipeID}}">{{item.RecipeName}}</option>
     </select>
-    <div>
-
         <div ng-repeat="item in Foodrecipes">
-            {{item.FoodItems}}
+        <div ng-if="item.RecipeID == data.selected_recipe ">
+            <div ng-repeat="elem in item.FoodItems">
+                {{elem}}
+            </div>
         </div>
     </div>
-
-
-        <!--<div ng-repeat = "i in image">-->
-              <!--<p>{{ i.imageName }}</p>-->
-        <!--</div>-->
-
-
-
-      <!--<div ng-repeat ="i in image">-->
-
-            <!--<div ng-if = " SearchRecipe == i.imageName  "  >{{ i.imageSrc }}-->
-                 <!--<img ng-src =  "{{i.imageSrc}}"  width="50%"  height="50%">-->
-
-
-            <!--</div>-->
-
-      <!--</div>-->
-
-
-
-<!--</div>-->
-
-<!--<div class="col-sm-3"></div>-->
-
-<!--{{ Foodrecipes }}-->
-         <!--</div>-->
+        <a href="#" class="button special" ng-click="optimizeOption(item.RecipeID)">Optimize!</a>
+    </div>
+</div>
 
 </body>
 </html>

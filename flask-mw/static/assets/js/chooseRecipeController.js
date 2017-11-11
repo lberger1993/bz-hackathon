@@ -16,5 +16,8 @@ angular.module('chooseRecipeApp', [])
             //TODO add error processing
         });
            $scope.selected_recipe = 'pizza';
+           $scope.optimizeOption = function(){
+
+           }
 
 }]);
