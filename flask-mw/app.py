@@ -1,13 +1,10 @@
-from DataContext import *
 from flask import Flask, send_file, request
-
+from DataContext import *
 
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-conn = sqlite3.connect('../data/WaterFP.sqlite', check_same_thread=False)
-cur = conn.cursor()
 
 @app.route("/")
 def index():

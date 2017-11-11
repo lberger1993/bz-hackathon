@@ -64,9 +64,5 @@ def data_calculate_water_score(data_body):
     return json.dumps(response_body)
 
 
-if __name__ == '__main__':
-    print(get_all_recipies()[1])
-
-
 
 
