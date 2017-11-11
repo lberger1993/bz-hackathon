@@ -1,5 +1,11 @@
-# bz-hackathon
-Bolzano Hackathon
+# Water Score
+Bolzano Hackathon for sustainability
+
+# Application Features: 
+
+1. Search for the water score of datas 
+2. Compose low-water cost recipes by region
+
 
 # Getting started
 
