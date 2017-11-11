@@ -6,6 +6,8 @@ angular.module('HelloWorldApp', [])
         $scope.currentAmount = 1000;
         $scope.waterAmount = 0;
 
+        var threshold = 1609;
+
         $http({
             method: 'GET',
             url: '/api/v1/get_all_food'
@@ -28,20 +30,24 @@ angular.module('HelloWorldApp', [])
 
         //TODO remove this from HelloWorld to smth better
 
+        $scope.aLotOfWater = function (ingredient) {
+            return ingredient.WaterCost > threshold;
+        };
+
         $scope.addIngredient = function(newIngredient) {
             $scope.savedIngredients = removeItemFromArray($scope.savedIngredients, newIngredient);
             $scope.ingredients.push(newIngredient);
             newIngredient.amount = 1000;
             $scope.query = "";
-            $scope.updateTotalAmount();
+            updateTotalAmount();
         };
 
         $scope.onLoseFocus = function() {
             $scope.currentAmount = 1000;
-            $scope.updateTotalAmount();
+            updateTotalAmount();
         };
 
-        $scope.updateTotalAmount = function() {
+        var updateTotalAmount = function() {
             $scope.waterAmount = 0.0;
             $scope.ingredients.forEach(function(ingredient) {
                 $scope.waterAmount += ingredient.WaterCost * ingredient.amount / 1000.0;

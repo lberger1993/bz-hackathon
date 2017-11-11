@@ -52,8 +52,10 @@
                    <div ng-if="ingredients" >
                        <div style="text-transform:uppercase;font-size:45px;">
                            <strong> Total Water Score: </strong>
-                           <a class="special"> {{waterAmount}} </a>
-                           <span  style="color:#06e6ff;">liters</span>
+                           <span>
+                               <a class="special"> {{waterAmount}} </a>
+                               <span  style="color:#06e6ff;">liters</span>
+                           </span>
                        </div>
                    </div>
                   <ul class="list-unstyled">
@@ -61,7 +63,7 @@
                         <div class="row" style="border-bottom: 1px dashed #06e6ff; padding-top: 5px;">
                             <div class="col-xs-5 col-sm-6 col-md-2 col-lg-6"> {{ingredient.ProductName}}
                                 <strong> {{ingredient.WaterCost}} </strong>
-                                <span ng-if="ingredient.WaterCost> 500" style="color:red;"> !! </span>
+                                <span ng-if="aLotOfWater(ingredient)" style="color:red;"> !! </span>
                                 <span  style="color:#06e6ff; font-size: 17px;">liters</span>
                             </div>
 
