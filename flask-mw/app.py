@@ -1,6 +1,5 @@
-from DataContext import *
 from flask import Flask, send_file, request
-
+from .DataContext import get_product_list
 
 
 app = Flask(__name__)

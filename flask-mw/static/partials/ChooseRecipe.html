@@ -72,7 +72,19 @@
         <h1 >Choose a Recipe</h1>
 
 
-        <input type="search" placeholder="Choose a Recipe" ng-model = "SearchRecipe">
+      <!--  <input type="search" placeholder="Choose a Recipe" ng-model = "SearchRecipe">-->
+
+     <div class="dropdown dropdown-scroll">
+                  <ul>
+                     <div class="input-group input-group-sm search-control" style="width:100%;">
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </span>
+                         <input type="text" name="demo-name" id="demo-name" value="" placeholder="Choose your recipe" ng-model="query">
+                     </div>
+                     <div ng-show="query != ''" role="presentation" ng-repeat='item in Foodrecipes | filter:query'>
+                        <a ng-click="" href="#"> {{item.ProductName}} </a>
+                     </div>
 
 
 
@@ -97,6 +109,8 @@
 </div>
 
 <div class="col-sm-3"></div>
+
+{{ Foodrecipes }}
          </div>
 
 </body>

@@ -1,5 +1,5 @@
 angular.module('chooseRecipeApp', [])
-   .controller('chooseRecipeController', function($scope) {
+   .controller('chooseRecipeController',['$http','$scope', function($http,$scope) {
 
 
 
@@ -9,6 +9,14 @@ angular.module('chooseRecipeApp', [])
 
 
         ];
+ $http({
+            method: 'GET',
+            url: '/api/v1/get_all_recipes'
+        }).then(function successCallback(response) {
+            $scope.Foodrecipes = response.data;
+        }, function errorCallback(response) {
+            //TODO add error processing
+        });
 
 
-});
+}]);
