@@ -1,6 +1,12 @@
 # Water Score
 Bolzano Hackathon for sustainability
 
+![Screenshot](ws0.png)
+
+
+![Screenshot](ws1.png)
+
+
 # Application Features: 
 
 1. Search for the water score of datas 
